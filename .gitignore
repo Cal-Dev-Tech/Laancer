@@ -1,0 +1,32 @@
+# Env & secrets
+.env
+.env.*
+# Runtime/state (adjust paths to your app)
+storage/
+uploads/
+public/uploads/
+logs/
+cache/
+# Dependencies (if installed on server)
+vendor/
+node_modules/
+# OS/IDE
+.DS_Store
+.idea/
+.vscode/
+# Large files
+installable-file/
+installable-file/xilancer-v3.5.0.zip
+installable-file/*.zip
+installable-file/xilancer-v3.5.0.zip
+.1h/
+
+
+docker
+docker-compose.yml
+composer.lock
+composer.json
+
+.lh/
+installable-file/
+installable-file/*.zip
