@@ -9,8 +9,8 @@
                         <p class="banner-single-content-para"> {{ $subtitle ?? __('Get hired by great clients and businesses around the world and work independently as you want.') }} </p>
 
                         <div class="btn-wrapper flex-btn mt-5">
-                            <a href="{{ $find_work_button_link ?? '' }}" class="cmn-btn btn-bg-1"> {{$find_work_button_text ?? __('Find Work') }} </a>
-                            <a href="{{ $find_project_button_link ?? '' }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Project') }} </a>
+                            <a href="{{ (empty($find_work_button_link) || \Illuminate\Support\Str::contains($find_work_button_link, 'xilancer.xgenious.com')) ? url('jobs/all') : $find_work_button_link }}" class="cmn-btn btn-bg-1"> {{$find_work_button_text ?? __('Find Work') }} </a>
+                            <a href="{{ (empty($find_project_button_link) || \Illuminate\Support\Str::contains($find_project_button_link, 'xilancer.xgenious.com')) ? url('projects/all') : $find_project_button_link }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Project') }} </a>
                         </div>
                         <div class="banner-single-content-logo mt-5">
                             <h5 class="banner-single-content-logo-title"> {{ __('Trusted by:') }} </h5>

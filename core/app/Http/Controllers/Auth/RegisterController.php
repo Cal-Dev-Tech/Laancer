@@ -133,9 +133,40 @@ class RegisterController extends Controller
             ]);
 
             if(!empty(get_static_option('site_google_captcha_enable'))){
+                // Validate reCAPTCHA v2 (checkbox) server-side
                 $request->validate([
                     'recaptchaResponse' => 'required',
                 ]);
+                $recaptcha = $request->input('recaptchaResponse');
+                $secret = get_static_option('recaptcha_secret_key');
+                if (!empty($recaptcha) && !empty($secret)) {
+                    $verify = curl_init();
+                    curl_setopt($verify, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+                    curl_setopt($verify, CURLOPT_POST, 1);
+                    curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query([
+                        'secret' => $secret,
+                        'response' => $recaptcha
+                    ]));
+                    curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, 0);
+                    curl_setopt($verify, CURLOPT_SSL_VERIFYHOST, 0);
+                    $response = curl_exec($verify);
+                    curl_close($verify);
+                    $result = json_decode($response, true);
+                    if (empty($result['success'])) {
+                        return response()->json([
+                            'errors' => [
+                                'g-recaptcha-response' => [__('reCAPTCHA verification failed.')]
+                            ]
+                        ], 422);
+                    }
+                } else {
+                    return response()->json([
+                        'errors' => [
+                            'g-recaptcha-response' => [__('reCAPTCHA verification failed.')]
+                        ]
+                    ], 422);
+                }
             }
 
             $email_verify_tokn = sprintf("%d", random_int(123456, 999999));

@@ -1,4 +1,7 @@
 # Env & secrets
+.1h/
+.cursor/
+.claude/
 .env
 .env.*
 # Runtime/state (adjust paths to your app)
@@ -7,6 +10,11 @@ uploads/
 public/uploads/
 logs/
 cache/
+# Dev runtime
+certs/
+.pids/
+scripts/
+
 # Dependencies (if installed on server)
 vendor/
 node_modules/
@@ -14,6 +22,7 @@ node_modules/
 .DS_Store
 .idea/
 .vscode/
+.gitignore
 # Large files
 installable-file/
 installable-file/xilancer-v3.5.0.zip

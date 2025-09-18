@@ -37,7 +37,7 @@
             <p class="pera">{{ $subtitle ?? '' }}</p>
             <div class="btn-wraper">
                 <a href="{{ $find_talent_button_link ?? '' }}" class="cmn-btn blue-btn">{{$find_talent_button_text ?? __('Find talent') }} <span><i class="fa-solid fa-arrow-right"></i></span></a>
-                <a href="{{ $find_work_button_link ?? '' }}" class="cmn-btn white-btn">{{$find_work_button_text ?? __('Find work') }}</a>
+                <a href="{{ (empty($find_work_button_link) || \Illuminate\Support\Str::contains($find_work_button_link, 'xilancer.xgenious.com')) ? url('jobs/all') : $find_work_button_link }}" class="cmn-btn white-btn">{{$find_work_button_text ?? __('Find work') }}</a>
             </div>
         </div>
     </div>

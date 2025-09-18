@@ -20,6 +20,20 @@ class FormController extends Controller
 
         $field_details = FormBuilder::find($request->custom_form_id);
 
+        // verify Google reCAPTCHA v3 if enabled
+        if (!empty(get_static_option('site_google_captcha_enable'))) {
+            $captchaToken = $request->input('gcaptcha_token');
+            if (empty($captchaToken)) {
+                toastr_error(__('reCAPTCHA verification failed.'));
+                return redirect()->back()->withInput();
+            }
+            $captchaResult = google_captcha_check($captchaToken);
+            if (empty($captchaResult['success']) || (($captchaResult['score'] ?? 0) < 0.5)) {
+                toastr_error(__('reCAPTCHA verification failed.'));
+                return redirect()->back()->withInput();
+            }
+        }
+
         unset($request['custom_form_id']);
         unset($request['gcaptcha_token']);
 

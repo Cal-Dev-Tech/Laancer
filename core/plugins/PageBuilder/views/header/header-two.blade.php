@@ -11,8 +11,8 @@
                         <h1 class="banner-single-content-title">{{ $title }}</h1>
                         <p class="banner-single-content-para">{{ $subtitle }}</p>
                         <div class="btn-wrapper flex-btn mt-5">
-                                <a href="{{ $find_work_button_link  ?? '' }}" class="cmn-btn btn-bg-secondary"> {{$find_work_button_text ?? __('Find Work') }} </a>
-                                <a href="{{ $find_project_button_link ?? '' }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Project') }} </a>
+                                <a href="{{ (empty($find_work_button_link) || \Illuminate\Support\Str::contains($find_work_button_link, 'xilancer.xgenious.com')) ? url('jobs/all') : $find_work_button_link  }}" class="cmn-btn btn-bg-secondary"> {{$find_work_button_text ?? __('Find Work') }} </a>
+                                <a href="{{ (empty($find_project_button_link) || \Illuminate\Support\Str::contains($find_project_button_link, 'xilancer.xgenious.com')) ? url('projects/all') : $find_project_button_link }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Project') }} </a>
                         </div>
                     </div>
                 </div>
