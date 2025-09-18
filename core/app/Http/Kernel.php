@@ -42,7 +42,6 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\CheckUserOnlineStatus::class,
             \App\Http\Middleware\DriverConfigMiddleware::class,
-            Demo::class
         ],
 
         'api' => [
