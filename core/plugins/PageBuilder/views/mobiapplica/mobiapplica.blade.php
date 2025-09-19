@@ -1,3 +1,4 @@
+@if(!request()->routeIs('homepage'))
 <!-- appStore area starts -->
 <section class="appStore-area pat-100 pab-100">
     <div class="container">
@@ -75,3 +76,4 @@
     </div>
 </section>
 <!-- appStore area end -->
+@endif

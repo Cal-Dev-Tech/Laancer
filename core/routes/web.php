@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\FrontendHomeController;
 use App\Http\Controllers\Frontend\FrontendJobsController;
 use App\Http\Controllers\Frontend\FrontendProjectsController;
 use App\Http\Controllers\Frontend\FrontendSubscriptionController;
+use App\Http\Controllers\Frontend\CategoryBrowseController;
 use App\Http\Controllers\Frontend\JobDetailsController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\OrderIPNController;
@@ -202,6 +203,7 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
 
     //dynamic single page
     Route::controller(FrontendController::class)->group(function(){
+        Route::get('hire', [CategoryBrowseController::class, 'browse'])->name('categories.browse');
         Route::get('/','home_page')->name('homepage');
         Route::get('/{slug}', 'dynamic_single_page')->name('frontend.dynamic.page');
     });
