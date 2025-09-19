@@ -5,9 +5,15 @@
             <div class="col-lg-6">
                 <div class="choose-contents">
                     <div class="section-title">
-                        <div class="subtitle"> <span> {{ $subtitle }} </span> </div>
-                        <h2 class="title"> {{ $title }}</h2>
-                        <p class="section-para">{{ $mini_description }}</p>
+                        @if(request()->routeIs('homepage'))
+                            <div class="subtitle"> <span> {{ __('Real people. Real results.') }} </span> </div>
+                            <h2 class="title"> {{ __('Why teams and freelancers choose Laancer') }}</h2>
+                            <p class="section-para">{{ __('We build long‑term partnerships between clients and top talent—with transparent, low fees, fast matching, and human support. Hire confidently or grow your freelance career with work that respects your craft.') }}</p>
+                        @else
+                            <div class="subtitle"> <span> {{ $subtitle }} </span> </div>
+                            <h2 class="title"> {{ $title }}</h2>
+                            <p class="section-para">{{ $mini_description }}</p>
+                        @endif
                     </div>
                     <ul class="choose-contents-list mt-4">
                         @foreach ($repeater_data['title_'] as $key => $data)

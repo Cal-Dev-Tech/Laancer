@@ -112,6 +112,7 @@ else{
                     @endif
                 @endif
                 {!! render_frontend_menu($primary_menu) !!}
+                <li class="menu-item"><a href="{{ route('categories.browse') }}">{{ __('Hire') }}</a></li>
             </ul>
         </div>
         <x-frontend.user-menu-for-nav-03 />

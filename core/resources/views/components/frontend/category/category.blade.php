@@ -12,10 +12,10 @@
     else{
         if(get_static_option('category_section_enable_disable_for_homepage') == 'disable'){
             if($current_url != $root_url){
-                $all_categories = \Modules\Service\Entities\Category::with('sub_categories')->where('status','1')->whereHas('projects')->get();
+                $all_categories = \Modules\Service\Entities\Category::with('sub_categories')->where('status','1')->get();
             }
         }else{
-            $all_categories = \Modules\Service\Entities\Category::with('sub_categories')->where('status','1')->whereHas('projects')->get();
+            $all_categories = \Modules\Service\Entities\Category::with('sub_categories')->where('status','1')->get();
         }
    }
 ?>
