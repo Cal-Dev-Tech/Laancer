@@ -112,7 +112,7 @@
         @endif 
      
         @if (Auth::guard('web')->check())
-            @if (Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 1 && Auth::guard('web')->user()->id != $user->id && Session::get('user_role') != 'freelancer' && $record->can_contact_freelancer == 1)
+            @if (Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 1 && Auth::guard('web')->user()->id != $user->id && Session::get('user_role') != 'freelancer' && ($record?->can_contact_freelancer == 1))
                 <div >
                     <form action="{{ route('client.message.send') }}" method="post"
                         enctype="multipart/form-data">
@@ -125,7 +125,7 @@
                             <i class="fa-regular fa-comments"></i>  {{ __('Contact Me') }}</button>
                     </form>
                 </div>
-            @elseif (Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 2 && Auth::guard('web')->user()->id != $user->id && Session::get('user_role') == 'client' && $record->can_contact_freelancer == 1)
+            @elseif (Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 2 && Auth::guard('web')->user()->id != $user->id && Session::get('user_role') == 'client' && ($record?->can_contact_freelancer == 1))
                 <div >
                     <form action="{{ route('client.message.send') }}" method="post"
                         enctype="multipart/form-data">
@@ -140,7 +140,7 @@
                 </div>    
             @endif
         @else
-           @if(!empty($record->can_contact_freelancer) && $record->can_contact_freelancer == 1 && $record->show_contact_me_before_login == 1)
+           @if(($record?->can_contact_freelancer == 1) && ($record?->show_contact_me_before_login == 1))
                 <a class="btn-profile btn-outline-gray contact_warning_chat_message">
                         <i class="fa-regular fa-comments"></i>{{ __('Contact Me') }}
                 </a>
